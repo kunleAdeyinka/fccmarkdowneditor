@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>FCC Markdown Editor</title>
+    <script src="https://unpkg.com/react@latest/dist/react.js"></script>
+    <script src="https://unpkg.com/react-dom@latest/dist/react-dom.js"></script>
+    <script src="https://unpkg.com/babel-standalone@6.15.0/babel.min.js"></script>
+
+
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/style.css">
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="text/babel">
+        var MarkdownEditor = React.createClass({
+          getInitialState(){
+            return {
+              content: '### Type Markdown Here'
+            }
+          },
+          render(){
+            return (
+                    <div className="container-fluid">
+			                 <div className="row">
+				                    <h1 className="text-center">FCC-React Markdown Editor</h1>
+                    				<div className="col-xs-12 col-sm-6">
+                    					<h3>Markdown</h3>
+                    					<textarea id="markdown" className="markdown" defaultValue={this.state.content}></textarea>
+                    				</div>
+                    				<div className="col-xs-12 col-sm-6">
+                    					<h3>Preview</h3>
+                    					<div id="preview"></div>
+                    				</div>
+			                 </div>
+		                </div>
+            );
+          }
+        })
+
+        ReactDOM.render(
+          <div>
+            <MarkdownEditor />
+          </div>,
+          document.getElementById('root')
+        );
+    </script>
+  </body>
+</html>
