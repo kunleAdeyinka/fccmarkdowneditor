@@ -5,6 +5,7 @@
     <title>FCC Markdown Editor</title>
     <script src="https://unpkg.com/react@latest/dist/react.js"></script>
     <script src="https://unpkg.com/react-dom@latest/dist/react-dom.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/marked/0.3.5/marked.js"></script>
     <script src="https://unpkg.com/babel-standalone@6.15.0/babel.min.js"></script>
 
 
@@ -20,6 +21,26 @@
               content: '### Type Markdown Here'
             }
           },
+          generateMarkup(){
+            marked.setOptions({
+              renderer: new marked.Renderer(),
+              gfm: true,
+              tables: true,
+              breaks: false,
+              pedantic: false,
+              sanitize: false,
+              smartLists: true,
+              smartypants: false
+            });
+
+            var markup = marked(this.state.content, {sanitize: true});
+            console.log(markup);
+            return {__html: markup};
+          },
+          handleInputChange(event){
+            console.log(event.target.value);
+            this.setState({content:event.target.value});
+          },
           render(){
             return (
                     <div className="container-fluid">
@@ -27,11 +48,12 @@
 				                    <h1 className="text-center">FCC-React Markdown Editor</h1>
                     				<div className="col-xs-12 col-sm-6">
                     					<h3>Markdown</h3>
-                    					<textarea id="markdown" className="markdown" defaultValue={this.state.content}></textarea>
+                    					<textarea id="markdown" className="markdown" defaultValue={this.state.content} onChange={this.handleInputChange}>
+                              </textarea>
                     				</div>
                     				<div className="col-xs-12 col-sm-6">
                     					<h3>Preview</h3>
-                    					<div id="preview"></div>
+                    					<div id="preview" dangerouslySetInnerHTML={this.generateMarkup()}></div>
                     				</div>
 			                 </div>
 		                </div>

@@ -1,7 +1,7 @@
 # FccMarkdownEditor
 
 * This application allows a user to generate markdown text in realtime..
-* place url here
+* https://codepen.io/aadeyinka007/full/PjKGBx
 
 ## Built With
 * [React.js](https://facebook.github.io/react/) - JavaScript Library for Building User Interfaces
